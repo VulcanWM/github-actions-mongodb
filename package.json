@@ -1,7 +1,11 @@
 {
     "name": "build",
     "version": "1.0.0",
+    "build:deploy": "cross-env NODE_ENV=production webpack",
     "scripts": {
-      "start": "node add_contributor.js"
+        "start": "node add_contributor.js"
+    },
+    "dependencies": {
+        "mongodb": "^5.3.0"
     }
-  }
+}
