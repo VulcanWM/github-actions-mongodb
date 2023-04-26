@@ -11,3 +11,5 @@ jobs:
           node-version: '14'
       - run: npm install mongodb
       - run: npm start
+        env: 
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
