@@ -13,3 +13,4 @@ jobs:
       - run: npm start
         env: 
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          USERNAME: ${{ github.actor }}
