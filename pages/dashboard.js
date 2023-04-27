@@ -5,7 +5,7 @@ import { authOptions } from "./api/auth/[...nextauth]";
 import { getServerSession } from "next-auth/next"
 import { useSession, signIn, signOut } from "next-auth/react";
 
-export default function Home( ) {
+export default function Home( { username, stats } ) {
   return (
     <div>
       <Head>
@@ -13,11 +13,12 @@ export default function Home( ) {
         <meta name="description" content="demo of Github Actions with MongoDB" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <>
-        <p>Not signed in</p>
-        <br />
-        <button onClick={() => signIn()}>Sign in</button>
-      </>
+    <>
+        <div>
+        <h4>Signed in as {username}</h4>
+        <button onClick={() => signOut()}>Sign out</button>
+        </div>
+    </>
     </div>
   );
 }
@@ -25,17 +26,18 @@ export default function Home( ) {
 export async function getServerSideProps(context) {
   const session = await getServerSession(context.req, context.res, authOptions)
 
-  if (session) {
+  if (!session) {
     return {
       redirect: {
-        destination: '/dashboard',
+        destination: '/',
         permanent: false,
       },
     }
   }
-
   return {
     props: {
+      username: session.user.name,
+      stats: {}
     },
   }
 }
