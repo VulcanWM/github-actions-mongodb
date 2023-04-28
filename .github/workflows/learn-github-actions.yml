@@ -18,7 +18,6 @@ jobs:
          for added_modified_file in "${added_modified_files[@]}"; do
             npm run add-contributor
          done
-#       - run: npm run add-contributor
         env: 
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           USERNAME: ${{ github.actor }}
