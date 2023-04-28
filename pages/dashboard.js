@@ -17,6 +17,7 @@ export default function Home( { stats } ) {
         <div>
         <h4>Signed in as {stats['Username']}</h4>
         <p>Tokens: {stats['Tokens']}</p>
+        <h2>Shop</h2>
         <button onClick={() => signOut()}>Sign out</button>
         </div>
     </>
