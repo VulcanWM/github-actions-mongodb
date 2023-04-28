@@ -1,11 +1,5 @@
 const uri = process.env.MONGODB_URI
 const username = process.env.USERNAME
-const commits = process.env.COMMITS
-console.log("commits")
-console.log(commits)
-console.log(typeof commits)
-console.log(commits == "")
-console.log(commits == null)
 
 const { MongoClient, ServerApiVersion } = require("mongodb");
 
