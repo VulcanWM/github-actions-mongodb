@@ -1,5 +1,7 @@
 const uri = process.env.MONGODB_URI
 const username = process.env.USERNAME
+const github = process.env.GITHUB
+console.log(github)
 
 const { MongoClient, ServerApiVersion } = require("mongodb");
 
