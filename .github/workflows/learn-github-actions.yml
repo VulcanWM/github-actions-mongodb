@@ -1,5 +1,5 @@
 name: add-contributor
-run-name: ${{ github.actor }} has contributed!
+run-name: ${{ github.payload.pusher.username }} has contributed!
 on: [push]
 jobs:
   adds-contributor:
