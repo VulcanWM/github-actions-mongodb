@@ -22,4 +22,3 @@ jobs:
         env: 
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           USERNAME: ${{ github.actor }}
-          COMMITS: ${{ github.payload }}
