@@ -21,4 +21,4 @@ jobs:
 #       - run: npm run add-contributor
         env: 
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
-          USERNAME: ${{ github.actor }}
+          USERNAME: ${{ github.payload.pusher.username }}
