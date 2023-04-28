@@ -12,6 +12,7 @@ export default function Home( ) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <>
+        <p><strong>Signin to view your dashboard!</strong></p>
         <p>Not signed in</p>
         <br />
         <button onClick={() => signIn()}>Sign in</button>
