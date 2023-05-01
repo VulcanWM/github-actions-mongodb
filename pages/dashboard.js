@@ -5,35 +5,27 @@ import { signOut } from "next-auth/react";
 import styles from "../styles/dashboard.module.css"
 import Layout from '../components/layout'
 
-export default function Home( { stats } ) {
+export default function Home( { stats, items } ) {
   stats = JSON.parse(stats)
+  console.log(items)
+  const shop = {"Nokia": 1, "iPhone": 3, "Ipad": 6, "Laptop": 10}
   return (
     <Layout>
         <h4>Signed in as <strong>{stats['Username']}</strong></h4>
         <p>Tokens: <strong>{stats['Tokens']}</strong></p>
         <h2>Shop</h2>
         <div className={styles.items}>
-          <div className={styles.item}>
-            <h3>Nokia</h3>
-            <p>Price: <strong>1</strong></p>
-            <button>Buy Nokia</button>
-          </div>
-          <div className={styles.item}>
-            <h3>iPhone</h3>
-            <p>Price: <strong>3</strong></p>
-            <button>Buy iPhone</button>
-          </div>
-          <div className={styles.item}>
-            <h3>Ipad</h3>
-            <p>Price: <strong>6</strong></p>
-            <button>Buy Ipad</button>
-          </div>
-          <div className={styles.item}>
-            <h3>Laptop</h3>
-            <p>Price: <strong>10</strong></p>
-            <button>Buy Laptop</button>
-          </div><br/>
-        </div>
+          {
+            Object.keys(shop).map((key, index) => ( 
+              <div className={styles.item}>
+                <h3>{key}</h3>
+                <p>Price: <strong>{shop[key]}</strong></p>
+                <p>Amount: <strong>{items[key] || 0}</strong></p>
+                <button>Buy {key}</button>
+              </div>
+            ))
+          }
+        </div><br/>
         <button className="thinbutton" onClick={() => signOut()}>Sign out</button>
     </Layout>
   );
@@ -64,10 +56,12 @@ export async function getServerSideProps(context) {
   } else {
     stats = users[0]
   }
+  const items = stats["Items"] || {}
   stats = JSON.stringify(stats)
   return {
     props: {
-      stats
+      stats,
+      items
     },
   }
 }
