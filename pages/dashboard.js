@@ -9,8 +9,8 @@ export default function Home( { stats } ) {
   stats = JSON.parse(stats)
   return (
     <Layout>
-        <h4>Signed in as {stats['Username']}</h4>
-        <p>Tokens: {stats['Tokens']}</p>
+        <h4>Signed in as <strong>{stats['Username']}</strong></h4>
+        <p>Tokens: <strong>{stats['Tokens']}</strong></p>
         <h2>Shop</h2>
         <div className={styles.items}>
           <div className={styles.item}>
