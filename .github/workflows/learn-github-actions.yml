@@ -20,4 +20,4 @@ jobs:
          done
         env: 
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
-          USERNAME: ${{ github.payload.pusher.username }}
+          USERNAME: ${{github.event.commits[0].author.name}}
