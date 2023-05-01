@@ -1,5 +1,5 @@
 name: add-contributor
-run-name: ${{ github.payload.pusher.username }} has contributed!
+run-name: ${{github.event.commits[0].author.name}} has contributed!
 on: [push]
 jobs:
   adds-contributor:
@@ -20,4 +20,4 @@ jobs:
          done
         env: 
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
-          USERNAME: ${{github.event.commits[0].author.name}}
+          USERNAME: ${{github.event.commits[0].author.username}}
