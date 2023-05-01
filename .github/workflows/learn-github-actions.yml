@@ -1,5 +1,5 @@
 name: add-contributor
-run-name: ${{github.event.commits[0].author.name}} has contributed!
+run-name: ${{github.event.commits[0].author.username}} has contributed!
 on: [push]
 jobs:
   adds-contributor:
