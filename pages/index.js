@@ -1,23 +1,17 @@
 import Head from "next/head";
 import { authOptions } from "./api/auth/[...nextauth]";
 import { getServerSession } from "next-auth/next"
-import { useSession, signIn, signOut } from "next-auth/react";
+import { signIn } from "next-auth/react";
+import Layout from '../components/layout'
 
 export default function Home( ) {
   return (
-    <div>
-      <Head>
-        <title>GitHub Actions MongoDB</title>
-        <meta name="description" content="demo of Github Actions with MongoDB" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <>
+      <Layout>
         <p><strong>Signin to view your dashboard!</strong></p>
         <p>Not signed in</p>
         <br />
-        <button onClick={() => signIn()}>Sign in</button>
-      </>
-    </div>
+        <button className="thinbutton" onClick={() => signIn()}>Sign in</button>
+      </Layout>
   );
 }
 

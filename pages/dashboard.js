@@ -1,27 +1,41 @@
-import Head from "next/head";
 import clientPromise from "../lib/mongodb";
 import { authOptions } from "./api/auth/[...nextauth]";
 import { getServerSession } from "next-auth/next"
-import { useSession, signIn, signOut } from "next-auth/react";
+import { signOut } from "next-auth/react";
+import styles from "../styles/dashboard.module.css"
+import Layout from '../components/layout'
 
 export default function Home( { stats } ) {
   stats = JSON.parse(stats)
   return (
-    <div>
-      <Head>
-        <title>GitHub Actions MongoDB</title>
-        <meta name="description" content="demo of Github Actions with MongoDB" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-    <>
-        <div>
+    <Layout>
         <h4>Signed in as {stats['Username']}</h4>
         <p>Tokens: {stats['Tokens']}</p>
         <h2>Shop</h2>
-        <button onClick={() => signOut()}>Sign out</button>
+        <div className={styles.items}>
+          <div className={styles.item}>
+            <h3>Nokia</h3>
+            <p>Price: <strong>1</strong></p>
+            <button>Buy Nokia</button>
+          </div>
+          <div className={styles.item}>
+            <h3>iPhone</h3>
+            <p>Price: <strong>3</strong></p>
+            <button>Buy iPhone</button>
+          </div>
+          <div className={styles.item}>
+            <h3>Ipad</h3>
+            <p>Price: <strong>6</strong></p>
+            <button>Buy Ipad</button>
+          </div>
+          <div className={styles.item}>
+            <h3>Laptop</h3>
+            <p>Price: <strong>10</strong></p>
+            <button>Buy Laptop</button>
+          </div><br/>
         </div>
-    </>
-    </div>
+        <button className="thinbutton" onClick={() => signOut()}>Sign out</button>
+    </Layout>
   );
 }
 
@@ -36,10 +50,10 @@ export async function getServerSideProps(context) {
     }
   }
   const userid = session.user.image.replace("https://avatars.githubusercontent.com/u/", "").replace("?v=4", "")
-  const res = await fetch(
+  const resp = await fetch(
     `https://api.github.com/user/${userid}`
   );
-  const data = await res.json();
+  const data = await resp.json();
   const username = data['login']
   const client = await clientPromise;
   const db = client.db("Logs");

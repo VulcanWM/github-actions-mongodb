@@ -1,0 +1,57 @@
+@media (prefers-color-scheme: light) {
+  :root {
+    --primary: #14a316;
+    --light-accent: #15bd18;
+    --dark-accent: #0f7a10;
+    --red: #ff0000;
+    --background: white;
+    --light-background: #cdcac7;
+    --font-color: black;
+    --light-font: #383838;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root{
+    --primary: #0ced6a;
+    --light-accent: #68d696;
+    --dark-accent: #08a449;
+    --red: #ff0000;
+    --background: #121212;
+    --light-background: #2b2a2a;
+    --font-color: white;
+    --light-font: #aabbc3;
+  }
+}
+
+  body {
+    padding: 0;
+    background-color: var(--background);
+    scroll-behavior: smooth;
+    color: var(--font-color);
+    font-family: 'Ubuntu', sans-serif;
+    font-size: calc(0.75em + 1vmin);
+    text-align: center;
+  }
+
+  button{
+    padding: 7px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 15px;
+    background-color: transparent;
+    color: var(--font-color);
+    cursor: pointer;
+    border: 2px solid var(--primary);
+    transition: 0.2s;
+    font-size: 17px;
+  }
+  
+  button:hover{
+    border-color: var(--dark-accent);
+  }
+
+  .thinbutton {
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
