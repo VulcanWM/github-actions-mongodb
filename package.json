@@ -7,7 +7,7 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "add-contributor": "NODE_ENV=$npm_config_files nodemon add_contributor.js"
+        "add-contributor": "NODE_ENV=$npm_config_files node add_contributor.js"
     },
     "dependencies": {
         "mongodb": "^5.3.0",
