@@ -7,15 +7,18 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: jitterbit/get-changed-files@v1
+        with:
+          format: 'csv'
       - uses: actions/setup-node@v3
         with:
           node-version: '14'
       - run: npm install mongodb
       - run: |
-         for changed_file in ${{ steps.files.outputs.all }}; do
+         mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.files.outputs.added_modified }}')
+          for added_modified_file in "${added_modified_files[@]}"; do
             echo "Hello"
             npm run add-contributor
-         done
+          done
         env: 
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           USERNAME: ${{github.event.commits[0].author.username}}
