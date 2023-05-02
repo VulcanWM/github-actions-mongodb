@@ -17,7 +17,7 @@ jobs:
          mapfile -d ',' -t all_files < <(printf '%s,' '${{ steps.files.outputs.all }}')
           for all_file in "${all_files[@]}"; do
             echo "Hello"
-            npm run add-contributor
+            npm run add-contributor --files=${{ steps.files.outputs.all }}
           done
         env: 
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
