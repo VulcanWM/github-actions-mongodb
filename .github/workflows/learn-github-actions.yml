@@ -22,3 +22,4 @@ jobs:
         env: 
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           USERNAME: ${{github.event.commits[0].author.username}}
+          CHANGED_FILES: ${{ steps.changes.outputs.all}}
