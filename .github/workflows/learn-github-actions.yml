@@ -15,9 +15,9 @@ jobs:
       - run: npm install mongodb
       - run: |
          for changed_file in ${{ steps.files.outputs.all }}; do
-           npm run add-contributor
+            echo "Hello"
+            npm run add-contributor
          done
         env: 
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           USERNAME: ${{github.event.commits[0].author.username}}
-          CHANGED_FILES: ${{ steps.changes.outputs.all}}
