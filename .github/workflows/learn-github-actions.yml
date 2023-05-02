@@ -7,8 +7,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: jitterbit/get-changed-files@v1
-        with:
-          format: 'csv'
       - uses: actions/setup-node@v3
         with:
           node-version: '14'
