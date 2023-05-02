@@ -31,6 +31,7 @@ async function run() {
             {
                 "Username": username,
                 "Tokens": users[0]['Tokens'] + 1,
+                "Items": users[0]['Items']
             }
         )
         console.log("updated user")
