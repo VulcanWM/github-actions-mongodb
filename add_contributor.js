@@ -1,6 +1,6 @@
 const uri = process.env.MONGODB_URI
 const username = process.env.USERNAME
-console.log(npm_config_files)
+console.log(process.env.npm_config_files)
 
 const { MongoClient, ServerApiVersion } = require("mongodb");
 
