@@ -4,15 +4,49 @@ import { getServerSession } from "next-auth/next"
 import { signOut } from "next-auth/react";
 import styles from "../styles/dashboard.module.css"
 import Layout from '../components/layout'
+import { useState } from "react"
 
-export default function Home( { stats, items } ) {
+export default function Home( { stats, itemsdict } ) {
   stats = JSON.parse(stats)
-  console.log(items)
+  const [items, setItems] = useState(itemsdict)
+  const [tokens, setTokens] = useState(stats['Tokens'])
+  const [msg, setMsg] = useState("")
   const shop = {"Nokia": 1, "iPhone": 3, "Ipad": 6, "Laptop": 10}
+  function buyItem(itemName){
+    fetch('/api/buyitem', {
+      method: 'POST',
+      body: JSON.stringify({"item": itemName}),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+       .then((response) => response.json())
+       .then((data) => {
+        if (data['type'] == "Success"){
+          setTokens(data.tokenAmount)
+          const oldCount = items[itemName] || 0
+          let copiedItems = {...items};
+          copiedItems[itemName] = oldCount + 1
+          setItems( items => ({
+              ...copiedItems
+            }));
+          setMsg("")
+        } else {
+          setMsg(data.data)
+        }
+       })
+       .catch((err) => {
+          console.log(err.message);
+       });
+  }
   return (
     <Layout>
         <h4>Signed in as <strong>{stats['Username']}</strong></h4>
-        <p>Tokens: <strong>{stats['Tokens']}</strong></p>
+        <p>Tokens: <strong>{tokens}</strong></p>
+        {msg != "" ? 
+        <p className="red">{msg}</p>
+        : 
+        <></>}
         <h2>Shop</h2>
         <div className={styles.items}>
           {
@@ -20,8 +54,9 @@ export default function Home( { stats, items } ) {
               <div className={styles.item}>
                 <h3>{key}</h3>
                 <p>Price: <strong>{shop[key]}</strong></p>
-                <p>Amount: <strong>{items[key] || 0}</strong></p>
-                <button>Buy {key}</button>
+                {/* <p>Amount: <strong>{items[key] || 0}</strong></p> */}
+                <span className={styles.amount}>{items[key] || 0}</span>
+                <button className={styles.buybutton} onClick={() => buyItem(key)}>Buy {key}</button>
               </div>
             ))
           }
@@ -56,12 +91,12 @@ export async function getServerSideProps(context) {
   } else {
     stats = users[0]
   }
-  const items = stats["Items"] || {}
+  const itemsdict = stats["Items"] || {}
   stats = JSON.stringify(stats)
   return {
     props: {
       stats,
-      items
+      itemsdict
     },
   }
 }

@@ -9,8 +9,24 @@
   .item {
     border: 2px solid var(--light-background);
     font-size: 20px;
-    width: 150px;
-    height: 210px;
+    width: 180px;
+    height: 200px;
     margin: 10px;
     border-radius: 10px;
   }
+
+.buybutton {
+  border-top-left-radius: 0%;
+  border-bottom-left-radius: 0%;
+}
+
+.amount {
+  padding: 7px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: var(--dark-accent);
+  color: var(--light-color);
+  border: 2px solid var(--dark-accent);
+  font-size: 17px;
+  border-radius: 100% 0 0 100%;
+}
