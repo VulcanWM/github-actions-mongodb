@@ -60,3 +60,12 @@
     color: var(--red);
     font-weight: bold;
   }
+
+  a {
+    text-decoration: none;
+    color: var(--light-accent);
+  }
+
+  a:hover {
+    color: var(--dark-accent);
+  }
