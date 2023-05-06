@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth/next"
 import styles from "../styles/dashboard.module.css"
 import Layout from '../components/layout'
 import { useState } from "react"
+import { signOut } from "next-auth/react";
 
 export default function Home( { stats, itemsdict } ) {
   stats = JSON.parse(stats)
@@ -59,6 +60,7 @@ export default function Home( { stats, itemsdict } ) {
             ))
           }
         </div><br/>
+        <button className="thinbutton" onClick={() => signOut()}>Sign out</button>
     </Layout>
   );
 }
