@@ -1,7 +1,6 @@
 import clientPromise from "../lib/mongodb";
 import { authOptions } from "./api/auth/[...nextauth]";
 import { getServerSession } from "next-auth/next"
-import { signOut } from "next-auth/react";
 import styles from "../styles/dashboard.module.css"
 import Layout from '../components/layout'
 import { useState } from "react"
@@ -54,14 +53,12 @@ export default function Home( { stats, itemsdict } ) {
               <div className={styles.item}>
                 <h3>{key}</h3>
                 <p>Price: <strong>{shop[key]}</strong></p>
-                {/* <p>Amount: <strong>{items[key] || 0}</strong></p> */}
                 <span className={styles.amount}>{items[key] || 0}</span>
                 <button className={styles.buybutton} onClick={() => buyItem(key)}>Buy {key}</button>
               </div>
             ))
           }
         </div><br/>
-        <button className="thinbutton" onClick={() => signOut()}>Sign out</button>
     </Layout>
   );
 }
