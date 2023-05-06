@@ -69,3 +69,9 @@
   a:hover {
     color: var(--dark-accent);
   }
+
+  @media (prefers-color-scheme: dark) {
+    html {
+      color-scheme: dark;
+    }
+  }
